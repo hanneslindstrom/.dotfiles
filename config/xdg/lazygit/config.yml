@@ -1,0 +1,27 @@
+git:
+  mainBranches: [master, main, develop/*, release/*, silicon_labs, siliconlabs]
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
+
+gui:
+  showBottomLine: false
+  nerdFontsVersion: "3"
+  branchColors:
+    'archive': 'black'
+    'develop': 'green'
+    'release': 'cyan'
+    'feature': 'blue'
+    'task': 'blue'
+    'experimental': 'magenta'
+    'WIP': 'magenta'
+
+promptToReturnFromSubprocess: false
+
+keybinding:
+  universal:
+    openFile: null
+  commits:
+    openLogMenu: 'M'
+    moveUpCommit: 'U'
+    moveDownCommit: 'D'
