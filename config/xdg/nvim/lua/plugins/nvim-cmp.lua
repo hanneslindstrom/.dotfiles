@@ -16,7 +16,10 @@ if not luasnip_status_ok then
   return
 end
 
-require("luasnip/loaders/from_vscode").lazy_load()
+local snippets_path = os.getenv('XDG_DATA_HOME') .. "/nvim/snippets"
+require("luasnip/loaders/from_vscode").lazy_load({
+  paths = snippets_path
+})
 
 local check_backspace = function()
   local col = vim.fn.col "." - 1
@@ -31,7 +34,7 @@ cmp.setup {
   },
   mapping = {
     ["<C-n>"] = cmp.mapping.select_prev_item(),
-		["<C-p>"] = cmp.mapping.select_next_item(),
+    ["<C-p>"] = cmp.mapping.select_next_item(),
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
@@ -88,9 +91,9 @@ cmp.setup {
   sources = {
     { name = "luasnip" },
     { name = "nvim_lsp",
-    entry_filter = function(entry)
-      return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
-    end },
+      entry_filter = function(entry)
+        return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
+      end },
     { name = "buffer" },
     { name = "path" },
   },
@@ -111,4 +114,3 @@ cmp.setup {
     native_menu = false,
   },
 }
-

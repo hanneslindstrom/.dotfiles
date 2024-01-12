@@ -2,3 +2,4 @@
 !.gitignore
 !tmux/plugins/tpm
 !oh-my-zsh/**
+!nvim/snippets/**

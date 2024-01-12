@@ -29,10 +29,13 @@ map('', 'Q', '<nop>')
 map('n', 'j', 'gj')
 map('n', 'k', 'gk')
 
+-- Scrolling
+map('n', 'J', '<C-y>')
+map('n', 'K', '<C-e>')
+
 -- Escape
 map('', '<C-c>', '<Esc>')
 map('!', '<C-c>', '<Esc>')
-map('i', 'kk', '<Esc>')
 
 -- Clear search highlighting
 map('n', '<space><space>', ':nohl<CR>')
@@ -57,7 +60,7 @@ map('', '<S-down>', '<cmd> horizontal resize -2<CR>')
 map('', '<S-up>', '<cmd> horizontal resize +2<CR>')
 
 -- Fast saving
-map('n', '<leader>s', ':w<CR>')
+map('n', '<leader>s', ':up<CR>')
 
 -- Close all windows and exit
 map('n', '<leader>q', ':qa<CR>')
@@ -93,7 +96,7 @@ map('n', '<C-g>', ':LazyGit<CR>')
 -- map('n', '<C-p>', ':Telescope find_files<CR>')
 -- map('n', '<C-f>', ':Telescope live_grep<CR>')
 -- map('v', '<C-f>', 'y:Telescope live_grep default_text=<C-R>"<CR>')
-map('n', '<C-m>', ':Telescope tasks<CR>')
+map('n', '<space>t', ':Telescope tasks<CR>')
 
 -------------------------------------------------------------------------------
 -- FZF

@@ -128,6 +128,11 @@ tasks.generators.custom.add(function(buf)
 
   return {
     {
+      "Generate Compilation Database: All",
+      cwd = gsdk_path,
+      cmd = ("%s all"):format(relative_script_path),
+    },
+    {
       "Generate Compilation Database: Panther",
       cwd = gsdk_path,
       cmd = ("%s panther"):format(relative_script_path),
@@ -161,6 +166,11 @@ tasks.generators.custom.add(function(buf)
       "Generate Compilation Database: Leopard",
       cwd = gsdk_path,
       cmd = ("%s leopard"):format(relative_script_path),
+    },
+    {
+      "Generate Compilation Database: Rainier",
+      cwd = gsdk_path,
+      cmd = ("%s rainier"):format(relative_script_path),
     },
     {
       "Generate Compilation Database: Custom Board",

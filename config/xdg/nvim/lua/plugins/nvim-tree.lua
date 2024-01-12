@@ -29,7 +29,7 @@ local function my_on_attach(bufnr)
   vim.keymap.set('n', '<C-e>', api.tree.toggle, opts('Toggle'))
   vim.keymap.set('n', 'u', api.tree.change_root_to_parent, opts('Up'))
   vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
-  vim.keymap.set('n', 'CD', api.tree.change_root_to_node, opts('CD'))
+  vim.keymap.set('n', 'CD', api.tree.change_root_to_node, opts('Change Tree Root'))
   vim.keymap.set('n', 'cd', function()
     local node = api.tree.get_node_under_cursor()
     if node.type == nil then
@@ -37,10 +37,10 @@ local function my_on_attach(bufnr)
     elseif node.type == 'directory' then
       return vim.fn.chdir(node.absolute_path)
     end
-  end, opts('cd'))
+  end, opts('Change CWD'))
   vim.keymap.set('n', 'v', api.fs.paste, opts('Paste'))
   vim.keymap.set('n', 'n', api.marks.navigate.next, opts('Next Bookmark'))
-  vim.keymap.set('n', 'p', api.marks.navigate.prev, opts('Prev Bookmark'))
+  vim.keymap.set('n', 'N', api.marks.navigate.prev, opts('Prev Bookmark'))
   vim.keymap.set('n', 'd', api.fs.trash, opts('Trash'))
   vim.keymap.set('n', 'D', api.fs.remove, opts('Delete'))
 end
@@ -72,7 +72,7 @@ nvim_tree.setup {
     debounce_delay = 15,
     width = 50,
     side = "left",
-    preserve_window_proportions = false,
+    preserve_window_proportions = true,
     number = false,
     relativenumber = false,
     signcolumn = "yes",

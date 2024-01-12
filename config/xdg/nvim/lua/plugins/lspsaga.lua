@@ -26,7 +26,15 @@ lspsaga.setup {
     virtual_text = true,
   },
   finder = {
-    default = 'def+imp+ref'
+    max_height = 0.7,
+    left_width = 0.3,
+    right_width = 0.7,
+    default = 'def+dec+ref',
+     methods = {
+      def = 'textDocument/definition',
+      dec = 'textDocument/declaration',
+      ref = 'textDocument/references'
+    }
   },
   -- rename = {
   --   quit = "<C-c>",

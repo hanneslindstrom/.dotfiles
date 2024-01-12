@@ -151,4 +151,7 @@ lazy.setup({
       },
     },
   },
+  ui = {
+    size = { width = 1, height = 1 },
+  }
 })
