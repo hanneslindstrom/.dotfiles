@@ -1,5 +1,6 @@
 compiledb
 ipython
+neovim-remote
 pwntools
 pycryptodome
 requests
