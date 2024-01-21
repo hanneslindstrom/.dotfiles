@@ -1,0 +1,153 @@
+#-------------------------------------------------------------------------------
+# Basics
+
+# Interpreter for shell commands.
+set shell bash
+
+# Option '-e' is used to exit instantly on error.
+set shellopts '-e'
+
+# Set internal field separator (IFS) to "\n" for shell commands.
+# This is useful to automatically split file names in $fs and $fx properly
+# since default file separator used in these variables (i.e. 'filesep' option)
+# is newline. You need to consider the values of these options and create your
+# commands accordingly.
+set ifs "\n"
+
+# Show .files by default.
+set hidden true
+
+# Use incremental search/filter.
+set incfilter true
+set incsearch true
+
+#-------------------------------------------------------------------------------
+# Visuals
+
+# Leave some space at the top and the bottom of the screen.
+set scrolloff 10
+
+# Use a `dim` instead of underline for the cursor in the preview pane.
+set cursorpreviewfmt "\033[7;2m"
+
+# Don't show hostname in promts. Do show active filter.
+set promptfmt "\033[0m\033[34;1m%d\033[0m\033[1m%f\033[0m%S\033[33m%F"
+
+# Add blue borders around the different panes.
+set drawbox true
+set borderfmt "\033[34;1m"
+
+# Use bat for prettier previews.
+set previewer bat
+
+# Show icons.
+set icons true
+
+#-------------------------------------------------------------------------------
+# Keymaps
+
+#---------------------------------------
+# Shell Commands
+
+# Execute the current file (script/binary).
+map s !$f
+
+# Open the currently selected file(s) using the system opener.
+map o %open $fx
+
+# Move the currently selected file(s) to the trash.
+map d %trash $fx
+
+# Write selected file/dir path to system clipboard.
+map y &echo $f | pbcopy
+
+# Create a new file or directory.
+map a push :add_node<space>
+
+#---------------------------------------
+# Lf Commands
+
+# Help-like commands.
+map ?
+map ?? :maps
+map ?m :cmaps
+map ?c :cmds
+
+# Toggle hiding dot-files.
+map H set hidden!
+
+# Generic file manipulation.
+map <space> :toggle
+map <esc> :clear;unselect
+map x :cut
+map c :select;copy
+map v :paste
+
+# File filtering.
+map f :filter
+map F :setfilter
+
+# FZF directory navigation.
+map <c-p> :fzf
+
+#-------------------------------------------------------------------------------
+# Commands
+
+# Do not want to open files by default using the 'l' key. Therefore we disable
+# the defualt open command.
+cmd open
+
+# Create a new directory or file in the open directory.
+cmd add_node %{{
+    if [[ ${1:0-1} == '/' ]]; then
+        mkdir $PWD/$1
+    else
+        touch $PWD/$1
+    fi
+}}
+
+# Navigate to a file's directory using FZF.
+cmd fzf ${{
+    fzf_selected_dir=$(FZF_DEFAULT_COMMAND="${FZF_DEFAULT_COMMAND} . ${PWD}" fzf | sed 's/\(^.*\)\/.*/\1/')
+    if [[ -z $fzf_selected_dir ]]; then
+        exit 0
+    fi
+    lf --remote "send ${id} cd ${fzf_selected_dir}"
+}}
+
+# Symlink selected files into the current directory.
+cmd ln %{{
+    if [[ -z $fs ]]; then
+        exit 0
+    fi
+    ln -s $fs $PWD
+}}
+
+# Extract the current file with the right command depending on archive type.
+cmd extract %{{
+    set -f
+    case $f in
+        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
+        *.tar.gz|*.tgz) tar xzvf $f;;
+        *.tar.xz|*.txz) tar xJvf $f;;
+        *.zip) unzip $f;;
+    esac
+}}
+
+# Compress current file or selected files with tar.
+cmd tar %{{
+    set -f
+    mkdir $1
+    cp -r $fx $1
+    tar czf $1.tar.gz $1
+    rm -rf $1
+}}
+
+# Compress current file or selected files with zip.
+cmd zip %{{
+    set -f
+    mkdir $1
+    cp -r $fx $1
+    zip -r $1.zip $1
+    rm -rf $1
+}}
