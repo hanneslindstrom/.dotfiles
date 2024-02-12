@@ -18,4 +18,3 @@ Start by downloading and installing [HomeBrew](https://brew.sh/) and
   - The Lua-LS is not working right
   - Clangd and Yaml-LS are a bit too tightly coupled with current local environments
 - Add pip install step to installation script
-  - Also make sure to append an updated PYTHONPATH to the .zshenv file
