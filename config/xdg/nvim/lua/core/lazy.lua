@@ -112,15 +112,6 @@ lazy.setup({
       end
     },
 
-    -- Tabout
-    {
-      'abecodes/tabout.nvim',
-      event = 'InsertEnter',
-      config = function()
-        require('tabout').setup {}
-      end
-    },
-
     -- LSP
     { 'neovim/nvim-lspconfig' },
 

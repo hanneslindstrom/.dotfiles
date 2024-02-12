@@ -22,6 +22,14 @@ map('', '<down>', '<nop>')
 map('', '<left>', '<nop>')
 map('', '<right>', '<nop>')
 
+-- Improved navigation in insert mode
+map("i", "<C-h>", "<left>")
+map("i", "<C-j>", "<down>")
+map("i", "<C-k>", "<up>")
+map("i", "<C-l>", "<right>")
+map("i", "<C-a>", "<home>")
+map("i", "<C-e>", "<end>")
+
 -- No Ex mode...
 map('', 'Q', '<nop>')
 
