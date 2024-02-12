@@ -8,6 +8,3 @@ alias ts="tmux ls"
 alias ls="eza --group-directories-first"
 alias ll="eza -l --group-directories-first"
 alias la="eza -la --group-directories-first"
-
-# TheFuck
-eval $(thefuck --alias)
