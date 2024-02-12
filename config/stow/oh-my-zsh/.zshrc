@@ -74,6 +74,12 @@ HIST_IGNORE_SPACE="true"
 unsetopt BEEP
 
 # -----------------------------------------------------------------------------
+# Miscellaneous Program Configuration
+
+# FZF insists on not needing a config file.
+source $DOTFILES/config/manual/fzf/fzf.zsh
+
+# -----------------------------------------------------------------------------
 # Finish
 
 source $ZSH/oh-my-zsh.sh
