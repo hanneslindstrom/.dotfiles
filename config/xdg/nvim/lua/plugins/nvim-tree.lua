@@ -28,6 +28,8 @@ local function my_on_attach(bufnr)
   -- custom mappings
   vim.keymap.set('n', '<C-e>', api.tree.toggle, opts('Toggle'))
   vim.keymap.set('n', 'u', api.tree.change_root_to_parent, opts('Up'))
+  vim.keymap.set('n', 'l', api.node.open.edit, opts('Open'))
+  vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close'))
   vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
   vim.keymap.set('n', 'CD', api.tree.change_root_to_node, opts('Change Tree Root'))
   vim.keymap.set('n', 'cd', function()
@@ -70,7 +72,7 @@ nvim_tree.setup {
     centralize_selection = false,
     cursorline = true,
     debounce_delay = 15,
-    width = 50,
+    width = 40,
     side = "left",
     preserve_window_proportions = true,
     number = false,

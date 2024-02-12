@@ -17,6 +17,7 @@ gui:
     'WIP': 'magenta'
 
 promptToReturnFromSubprocess: false
+notARepository: 'skip'
 
 keybinding:
   universal:

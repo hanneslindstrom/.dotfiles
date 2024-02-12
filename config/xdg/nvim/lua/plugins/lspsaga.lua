@@ -34,6 +34,9 @@ lspsaga.setup {
       def = 'textDocument/definition',
       dec = 'textDocument/declaration',
       ref = 'textDocument/references'
+    },
+    keys = {
+      quit = '<ESC>'
     }
   },
   -- rename = {

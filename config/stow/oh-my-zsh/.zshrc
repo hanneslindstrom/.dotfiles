@@ -13,7 +13,7 @@ export ZSH_COMPDUMP=$HOME/.cache/zsh/.zcompdump-$HOST
 
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
-plugins=(git docker zsh-autosuggestions zsh-syntax-highlighting vi-mode)
+plugins=(zsh-autosuggestions zsh-syntax-highlighting vi-mode)
 
 # -----------------------------------------------------------------------------
 # Key mappings
