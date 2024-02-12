@@ -1,11 +1,11 @@
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- General NeoVim Settings
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 local g = vim.g       -- Global variables
 local opt = vim.opt   -- Set options (global/buffer/windows-scoped)
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- General
 
 opt.mouse = 'a'                       -- Enable mouse support
@@ -13,16 +13,18 @@ opt.clipboard = 'unnamedplus'         -- Copy/paste to system clipboard
 opt.swapfile = false                  -- Don't use swapfile
 opt.completeopt = 'menuone,noinsert,noselect'  -- Autocomplete options
 
--------------------------------------------------------------------------------
--- Files
+--------------------------------------------------------------------------------
+-- File Paths
 
 local datad = os.getenv('XDG_DATA_HOME') or os.getenv('HOME') .. '/.local/share/'
 
 opt.backupdir = datad .. '/nvim/backup'
 opt.directory = datad .. '/nvim/swap'
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- UI
+
+vim.cmd[[colorscheme tokyonight]]
 
 opt.number = true           -- Show line number
 opt.showmatch = true        -- Highlight matching parenthesis
@@ -39,9 +41,8 @@ opt.termguicolors = true    -- Enable 24-bit RGB colors
 opt.laststatus = 3          -- Set global statusline
 opt.scrolloff = 12          -- Leave some space at end of file while scrolling
 opt.shortmess:append "S"    -- Disable default search match counter
-opt.formatoptions:remove "t"
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Indent
 
 opt.expandtab = true        -- Use spaces instead of tabs
@@ -49,7 +50,7 @@ opt.shiftwidth = 4          -- Shift 4 spaces when tab
 opt.tabstop = 4             -- 1 tab == 4 spaces
 opt.smartindent = true      -- Autoindent new lines
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Performance
 
 opt.hidden = true           -- Enable background buffers
@@ -58,13 +59,13 @@ opt.lazyredraw = true       -- Faster scrolling
 opt.synmaxcol = 240         -- Max column for syntax highlight
 opt.updatetime = 250        -- ms to wait for trigger an event
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Startup
 
 -- Disable nvim intro
 opt.shortmess:append "sI"
 
--- -- Disable builtin plugins
+-- Disable builtin plugins
 local disabled_built_ins = {
    "2html_plugin",
    "getscript",

@@ -1,31 +1,34 @@
--------------------------------------------------------------------------------
--- Lualine
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Lualine: Actually Good Looking Status Line
+--------------------------------------------------------------------------------
 
 local status_ok, lualine = pcall(require, 'lualine')
 if not status_ok then
   return
 end
 
-require('lualine').setup {
+--------------------------------------------------------------------------------
+-- Setup
+
+lualine.setup {
+
+  -- Options
   options = {
-    icons_enabled = true,
-    theme = 'auto',
+
+    -- UI
     component_separators = { left = '|', right = '|'},
     section_separators = { left = '', right = ''},
+
+    -- General
     disabled_filetypes = {
       statusline = {'NvimTree'},
-      winbar = {},
     },
-    ignore_focus = {},
-    always_divide_middle = true,
+
+    -- Needs to be set for some reason, otherwise FZF messes up status line
     globalstatus = false,
-    refresh = {
-      statusline = 1000,
-      tabline = 1000,
-      winbar = 1000,
-    }
   },
+
+  -- Sections
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'diff', 'diagnostics'},
@@ -42,8 +45,5 @@ require('lualine').setup {
     lualine_y = {},
     lualine_z = {}
   },
-  tabline = {},
-  winbar = {},
-  inactive_winbar = {},
-  extensions = {}
+
 }

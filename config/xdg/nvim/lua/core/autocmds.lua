@@ -1,11 +1,11 @@
--------------------------------------------------------------------------------
--- Autocommand Functions
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Autocommands
+--------------------------------------------------------------------------------
 
-local augroup = vim.api.nvim_create_augroup   -- Create/get autocommand group
-local autocmd = vim.api.nvim_create_autocmd   -- Create autocommand
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- General
 
 -- Remove whitespace on save
@@ -20,7 +20,7 @@ autocmd('BufEnter', {
   command = 'set fo-=c fo-=r fo-=o'
 })
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- File-Type Specific
 
 -- Set indentation to 2 spaces
@@ -55,29 +55,4 @@ autocmd('BufRead', {
     '*.function'
   },
   command = 'set ft=c'
-})
-
-
--------------------------------------------------------------------------------
--- Terminal
-
--- Open a Terminal on the right tab
-autocmd('CmdlineEnter', {
-  command = 'command! Term :botright vsplit term://$SHELL'
-})
-
--- Enter insert mode when switching to terminal
-autocmd('TermOpen', {
-  command = 'setlocal listchars= nonumber norelativenumber nocursorline',
-})
-
-autocmd('TermOpen', {
-  pattern = '',
-  command = 'startinsert'
-})
-
--- Close terminal buffer on process exit
-autocmd('BufLeave', {
-  pattern = 'term://*',
-  command = 'stopinsert'
 })

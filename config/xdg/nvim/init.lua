@@ -1,34 +1,47 @@
--------------------------------------------------------------------------------
--- Hannes' NeoVim Configuration
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Hannes's NeoVim Configuration
+--------------------------------------------------------------------------------
 
--------------------------------------------------------------------------------
--- Package Manager
+local vim_require = function(path)
+  local xdg_config = os.getenv("XDG_CONFIG_HOME")
+  if (xdg_config == nil) then
+    return nil
+  end
 
-require('core/lazy')
+  local vim_dir = xdg_config .. '/nvim/vim/'
+  local command = 'source ' .. vim_dir .. path
+  vim.cmd(command)
+end
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Modules
+
+require('plugins/lazy')
+
+----------------------------------------
 -- Core
 
 require('core/autocmds')
+require('core/commands')
 require('core/keymaps')
-require('core/colors')
 require('core/options')
 
--------------------------------------------------------------------------------
+----------------------------------------
 -- LSP
 
-require('lsp/lspconfig')
+require('lsp/lsp')
 
--------------------------------------------------------------------------------
+----------------------------------------
 -- Plugins
 
-require('plugins/telescope')
-require('plugins/nvim-cmp')
+-- Lua
+require('plugins/lualine')
+require('plugins/lazygit')
+require('plugins/nvim-cmp/nvim-cmp')
 require('plugins/nvim-tree')
 require('plugins/nvim-treesitter')
-require('plugins/lualine')
-require('plugins/lspsaga')
-require('plugins/lazygit')
-require('plugins/fzf')
-require('plugins/vim-tmux-navigator')
+require('plugins/telescope/telescope')
+
+-- VimScript
+vim_require('plugins/fzf.vim')
+vim_require('plugins/vim-tmux-navigator.vim')
